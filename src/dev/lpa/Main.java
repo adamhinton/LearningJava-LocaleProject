@@ -25,11 +25,17 @@ public class Main {
         // DateTimeFormatter
         var dtf = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
 
+        System.out.println("-------------");
         for (var locale : List.of(
                 Locale.getDefault(), Locale.US, en, enAU, enCA, Locale.UK, enNZ, enIN
         )){
             System.out.println(locale.getDisplayName() + "= " + LocalDateTime.now().format(dtf.withLocale(locale)));
         }
+
+        DateTimeFormatter wDayMonth = DateTimeFormatter.ofPattern(
+                // Four capital letters prints full item
+                // so EEEE is full day name, MMMM Is full month name
+                "EEEE, MMMM d, yyyy");
 
 
     }
