@@ -1,5 +1,7 @@
 package dev.lpa;
 
+import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -37,6 +39,25 @@ public class Main {
                 // so EEEE is full day name, MMMM Is full month name
                 "EEEE, MMMM d, yyyy");
 
+        LocalDate May5 = LocalDate.of(2020, 5, 5);
+
+        System.out.println("--------------");
+
+        for(var locale: List.of(
+                Locale.CANADA, Locale.CANADA_FRENCH, Locale.FRANCE, Locale.GERMANY, Locale.TAIWAN, Locale.JAPAN,
+                Locale.ITALY
+        )) {
+            System.out.println(
+                    locale.getDisplayName() + " : " +
+                            locale.getDisplayName(locale) + "=\n]t"
+                            + May5.format(wDayMonth.withLocale(locale)));
+
+            // Cool
+            System.out.print(String.format(locale, "\t%1$tA, %1$tB %1$te, %1$tY, %n", May5));
+
+            NumberFormat decimalInfo = NumberFormat.getNumberInstance(locale);
+            System.out.println(decimalInfo.format(123456789.123456));
+        }
 
     }
 }
